@@ -1,5 +1,3 @@
-// rhodey & miloh  
-
 Are the Ducks Out?
 ==========
 
@@ -12,7 +10,7 @@ cage is not "collected" nor is it of interest to this government.
   
 ## API
   
-'''javascript
+```javascript
   location: a string representing a location.
   status:   YES, NO, or UNKNOWN.
 
