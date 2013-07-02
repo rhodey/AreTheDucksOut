@@ -14,7 +14,7 @@ var duck_status_key = "duck-status";
 var requestListener = function(request, response) {
   switch(request.url) {
     case "/":
-      response.writeHead(200, {'Content-Type': 'text/html'});
+      response.writeHead(200, {'Content-type': 'text/html'});
       response.end(fs.readFileSync(HTML_DIR + 'index.html'));
       break;
       
