@@ -3,6 +3,7 @@ MODULE_DIR = './lib/node_modules/';
 REDIS_HOST = '127.0.0.1';
 REDIS_PORT = '6379';
 
+var fs = require('fs');
 var http = require('http');
 var redis = require(MODULE_DIR + 'redis');
 
