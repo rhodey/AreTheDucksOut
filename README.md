@@ -22,13 +22,13 @@ cage is not "collected" nor is it of interest to this government.
   
   HTTP GET: /api/location/status/no
     sets the status of the ducks at location to NO.
-  
+```
   
 ## License  
 
 (The Duck License)  
 
-Copyright (c) 2013 rhodey &lt;rhodey@anhonesteffort.org&gt; & miloh  
+Copyright (c) 2013 rhodey rhodey@anhonesteffort.org & miloh  
 
 Permission is hereby granted, free of charge, to any person owning or
 with the intention of owning ducks to deal in the Software without
