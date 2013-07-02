@@ -16,10 +16,13 @@ p { margin: 0 0 1em 0 }
   function prepareDucks() {
     xmlhttp = new XMLHttpRequest();
     url_parts = window.location.host.toLowerCase().split('.');
+    path_parts = window.location.pathname.toLowerCase().split('/');
+    duck_location = "tardisfarm";
     if(url_parts.length > 2 && url_parts[0] != "www")
-      xmlhttp.open("GET", "api/" + url_parts[0] + "/outside", false);
-    else
-      xmlhttp.open("GET", "api/tardisfarm/outside", false);
+      duck_location = url_parts[0];
+    else if(path_parts.length > 1 && path_parts[1] !== "")
+      duck_location = path_parts[1];
+    xmlhttp.open("GET", "api/" + duck_location + "/outside", false);
     xmlhttp.send();
     duck_state = JSON.parse(xmlhttp.responseText);
     if(duck_state.outside != null)
