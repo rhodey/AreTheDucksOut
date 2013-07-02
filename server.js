@@ -1,3 +1,4 @@
+HTML_DIR = './html/';
 MODULE_DIR = './lib/node_modules/';
 REDIS_HOST = '127.0.0.1';
 REDIS_PORT = '6379';
@@ -12,6 +13,11 @@ var duck_status_key = "duck-status";
 var requestListener = function(request, response) {
   switch(request.url) {
     case "/":
+      response.writeHead(200, {'Content-Type': 'text/plain'});
+      response.end(fs.readFileSync(HTML_DIR + 'index.html'));
+      break;
+      
+    case "/api/status":
       redis_client.get(duck_status_key, function (err, reply) {
         response.writeHead(200, {'Content-Type': 'text/plain'});
         if(reply != null)
@@ -21,14 +27,14 @@ var requestListener = function(request, response) {
       });
       break;
       
-    case "/api/ducks-in":
+    case "/api/status/in":
       redis_client.set(duck_status_key, "no", redis.print);
       console.log("Ducks have been put inside.");
       response.writeHead(200, {'Content-Type': 'text/plain'});
       response.end("I trust that you put the ducks inside.");
       break;
       
-    case "/api/ducks-out":
+    case "/api/status/out":
       redis_client.set(duck_status_key, "yes", redis.print);
       console.log("Ducks have been let outside.");
       response.writeHead(200, {'Content-Type': 'text/plain'});
