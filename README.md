@@ -1,7 +1,5 @@
 Are the Ducks Out?
 ==========
-
-## About
   
 HTTP-based (non-invasive) duck monitoring. Only meta-data pertaining
 to the boolean status of the ducks occupacy of the duck cage is
