@@ -6,6 +6,11 @@ to the boolean status of the ducks occupacy of the duck cage is
 "collected". The content of the duck's lives outside or inside their
 cage is not "collected" nor is it of interest to this government.  
   
+  
+## Installation
+duckproxy goes into /etc/apache2/sites-enabled/duckproxy 
+page your web dev for help
+
 ## API
   
 ```javascript

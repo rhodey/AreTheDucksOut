@@ -1,0 +1,16 @@
+<VirtualHost *:80>
+        ServerName aretheducksout.info
+
+        ErrorLog /var/log/apache2/duckproxy_error.log
+        CustomLog /var/log/apache2/duckproxy_access.log "combined"
+
+        LogLevel debug
+	ProxyPass / http://localhost:4444/
+	ProxyPassReverse / http://localhost:4444/
+
+	<Location />
+	  Order allow,deny
+	  Allow from all
+	</Location>
+
+</VirtualHost>
