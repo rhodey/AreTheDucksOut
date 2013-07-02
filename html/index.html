@@ -15,7 +15,7 @@ p { margin: 0 0 1em 0 }
 <script>
   function prepareDucks(){
     xmlhttp=new XMLHttpRequest();
-    xmlhttp.open("GET", "api/status",false);
+    xmlhttp.open("GET", "api/tardis/status",false);
     xmlhttp.send();
     document.getElementById("duck_status").innerHTML = xmlhttp.responseText;
   }

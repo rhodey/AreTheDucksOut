@@ -9,43 +9,35 @@ var redis = require(MODULE_DIR + 'redis');
 
 var redis_client = redis.createClient(REDIS_PORT, REDIS_HOST);
 var server_port = process.argv[2];
-var duck_status_key = "duck-status";
+var duck_status_key = "-duck-status";
+
+function handleApiCall(location, new_status, response) {
+  response.writeHead(200, {'Content-Type': 'text/plain'});
+  
+  if(new_status != "YES" && new_status != "NO") {
+    redis_client.get(location + duck_status_key, function (err, reply) {
+      if(reply != null)
+        response.end(reply);
+      else
+        response.end("UNKNOWN");
+    });
+  }
+  
+  else {
+    redis_client.set(location + duck_status_key, new_status, redis.print);
+    console.log("Are the ducks out? " + new_status + ".");
+    response.end("Duck status updated. Are the ducks out? " + new_status + ".");
+  }
+}
 
 var requestListener = function(request, response) {
-  switch(request.url) {
-    case "/":
-      response.writeHead(200, {'Content-type': 'text/html'});
-      response.end(fs.readFileSync(HTML_DIR + 'index.html'));
-      break;
-      
-    case "/api/status":
-      redis_client.get(duck_status_key, function (err, reply) {
-        response.writeHead(200, {'Content-Type': 'text/plain'});
-        if(reply != null)
-          response.end(reply);
-        else
-          response.end("UNKNOWN");
-      });
-      break;
-      
-    case "/api/status/in":
-      redis_client.set(duck_status_key, "NO", redis.print);
-      console.log("Ducks have been put inside.");
-      response.writeHead(200, {'Content-Type': 'text/plain'});
-      response.end("I trust that you put the ducks inside.");
-      break;
-      
-    case "/api/status/out":
-      redis_client.set(duck_status_key, "YES", redis.print);
-      console.log("Ducks have been let outside.");
-      response.writeHead(200, {'Content-Type': 'text/plain'});
-      response.end("I trust that you let the ducks outside.");
-      break;
-      
-    default:
-      console.log("bad request: " + request.url);
-      response.writeHead(404, {'Content-Type': 'text/plain'});
-      response.end("resource not found.");
+  if(request.url.toUpperCase().indexOf("/API/") !== -1) {
+    api_call = request.url.toUpperCase().split("/");
+    handleApiCall(api_call[2], api_call[4], response);
+  }
+  else {
+    response.writeHead(200, {'Content-type': 'text/html'});
+    response.end(fs.readFileSync(HTML_DIR + 'index.html'));
   }
 }
 
