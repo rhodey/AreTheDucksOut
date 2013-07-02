@@ -24,19 +24,19 @@ var requestListener = function(request, response) {
         if(reply != null)
           response.end(reply);
         else
-          response.end("unknown");
+          response.end("UNKNOWN");
       });
       break;
       
     case "/api/status/in":
-      redis_client.set(duck_status_key, "no", redis.print);
+      redis_client.set(duck_status_key, "NO", redis.print);
       console.log("Ducks have been put inside.");
       response.writeHead(200, {'Content-Type': 'text/plain'});
       response.end("I trust that you put the ducks inside.");
       break;
       
     case "/api/status/out":
-      redis_client.set(duck_status_key, "yes", redis.print);
+      redis_client.set(duck_status_key, "YES", redis.print);
       console.log("Ducks have been let outside.");
       response.writeHead(200, {'Content-Type': 'text/plain'});
       response.end("I trust that you let the ducks outside.");

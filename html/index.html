@@ -1,29 +1,26 @@
 <html>
 <head>
+<title>Are The Ducks Out?!?</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type=text/css>
+body { font-family: sans-serif; font-size:12pt }
+#wrapper { max-width: 800px; margin: 0px auto }
+#left { float: left }
+#right { margin-left:384px; padding: 0 0 0 1em; }
+h1 { font-size: 16pt; font-weight:bold; text-align:center; border-bottom:2px solid black }
+h2 { font-size: 12pt; font-weight:bold; margin:0; padding:0; border-bottom: 1px solid black; margin-bottom:8px; }
+p { margin: 0 0 1em 0 }
+</style>
 
-
-    <script>
-    function prepareDucks(){
-
+<script>
+  function prepareDucks(){
     xmlhttp=new XMLHttpRequest();
     xmlhttp.open("GET", "api/status",false);
     xmlhttp.send();
-   
-    alert(xmlhttp.responseText);
-    } 
+    document.getElementById("duck_status").innerHTML = xmlhttp.responseText;
+  }
+</script> 
 
-   </script> 
-    <title>Are The Ducks Out?!?</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <style type=text/css>
-    body { font-family: sans-serif; font-size:12pt }
-    #wrapper { max-width: 800px; margin: 0px auto }
-    #left { float: left }
-    #right { margin-left:384px; padding: 0 0 0 1em; }
-    h1 { font-size: 16pt; font-weight:bold; text-align:center; border-bottom:2px solid black }
-    h2 { font-size: 12pt; font-weight:bold; margin:0; padding:0; border-bottom: 1px solid black; margin-bottom:8px; }
-    p { margin: 0 0 1em 0 }
-    </style>
 </head>
 <body onload="prepareDucks()"
 <div id=wrapper>
@@ -31,7 +28,9 @@
 <div id=left>
 <img
 src=http://johngushue.typepad.com/.a/6a00d83451f25369e2014e862ccf7e970d-800wi
-style="max-height: 100px; max-width: 150px;">
+style="max-height: 250px; max-width: 350px;">
+<br>
+<div style="font-size:38px">Are the ducks out?</div>
 </div>
 <div id=right>
   <h2>Why</h2>
@@ -42,6 +41,8 @@ sustain many people</p>
 express their desire for a modern economy by voting with their ducks...
 </p><p> <strong>You can on your ducks using aretheducksout.info!</strong></p>
   </div>
+  <br><br><br><br><br><br><br><br>
+  <div id="duck_status" style="font-size:90px; text-align:center; font-weight:bold;">UNKNOWN</div>
 </body>
 </html>
 
