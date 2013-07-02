@@ -9,18 +9,15 @@ var redis_client = redis.createClient(REDIS_PORT, REDIS_HOST);
 var server_port = process.argv[2];
 var duck_status_key = "duck-status";
 
-var http_server = http.createServer(function(request, response) {
+var requestListener = function(request, response) {
   switch(request.url) {
     case "/":
       redis_client.get(duck_status_key, function (err, reply) {
-        if(reply != null) {
-          response.writeHead(200, {'Content-Type': 'text/plain'});
+        response.writeHead(200, {'Content-Type': 'text/plain'});
+        if(reply != null)
           response.end(reply);
-        }
-        else {
-          response.writeHead(200, {'Content-Type': 'text/plain'});
-          response.end('unknown');
-        }
+        else
+          response.end("unknown");
       });
       break;
       
@@ -40,7 +37,9 @@ var http_server = http.createServer(function(request, response) {
       
     default:
       console.log("bad request: " + request.url);
-      response.writeHead(500, {'Content-Type': 'text/plain'});
-      response.end("SERVER ERROR!.");
+      response.writeHead(404, {'Content-Type': 'text/plain'});
+      response.end("resource not found.");
   }
-}).listen(server_port);
+}
+
+var http_server = http.createServer(requestListener).listen(server_port);
