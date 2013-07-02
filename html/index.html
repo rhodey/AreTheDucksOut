@@ -13,9 +13,13 @@ p { margin: 0 0 1em 0 }
 </style>
 
 <script>
-  function prepareDucks(){
-    xmlhttp=new XMLHttpRequest();
-    xmlhttp.open("GET", "api/tardis/status",false);
+  function prepareDucks() {
+    xmlhttp = new XMLHttpRequest();
+    url_parts = window.location.host.toLowerCase().split('.');
+    if(url_parts[0].indexOf("aretheducksout") == -1 && url_parts[0] != "www")
+      xmlhttp.open("GET", "api/" + url_parts[0] + "/status", false);
+    else
+      xmlhttp.open("GET", "api/tardisfarm/status", false);
     xmlhttp.send();
     document.getElementById("duck_status").innerHTML = xmlhttp.responseText;
   }

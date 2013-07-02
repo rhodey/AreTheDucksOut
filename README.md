@@ -9,17 +9,17 @@ cage is not "collected" nor is it of interest to this government.
 ## API
   
 ```javascript
-  location: a string representing a location.
-  status:   YES, NO, or UNKNOWN.
+  location: a string representing a location (eg. tardisfarm, hearth, etc).
+  status:   the string "YES", "NO", or "UNKNOWN".
 
   HTTP GET: /api/location/status
     returns the status of the ducks at location.
   
   HTTP GET: /api/location/status/yes
-    sets the status of the ducks at location to YES.
+    sets the status of the ducks at location to "YES".
   
   HTTP GET: /api/location/status/no
-    sets the status of the ducks at location to NO.
+    sets the status of the ducks at location to "NO".
 ```
   
 ## License  
