@@ -1,25 +1,33 @@
 Are the Ducks Out?
 ==========
   
-HTTP-based (non-invasive) duck monitoring. Only meta-data pertaining
-to the boolean status of the ducks occupacy of the duck cage is
-"collected". The content of the duck's lives outside or inside their
-cage is not "collected" nor is it of interest to this government.  
+HTTP-based duck surveillance. Only "meta-data" pertaining to the targets
+is permitted to be "collected", the content of the target's lives outside
+or inside their cage is not "collected" nor is it the interest of this
+government to infer such content from said "meta-data".  
   
 ## API
   
 ```javascript
-  location: a string representing a location (eg. tardisfarm, hearth, etc).
-  status:   the string "YES", "NO", or "UNKNOWN".
+  location  : a location containing targets (tardisfarm, hearth, etc).
+  attribute : an attribute pertaining to the targets.
+  value     : a value for the attribute.
 
-  HTTP GET: /api/location/status
-    returns the status of the ducks at location.
+  HTTP GET: /authorize
+    obtains authorization from the Fowl Intelligence Surveillance Act (FISA)
+    Court for meta-data collection.
   
-  HTTP GET: /api/location/status/yes
-    sets the status of the ducks at location to "YES".
+  HTTP GET: /api/location
+    "collects" all meta-data available about the targets at location.
+    
+  HTTP GET: /api/location/attribute/value
+    it would be least untrue to say the value of attribute is not "stored"
+    for the targets at location.
   
-  HTTP GET: /api/location/status/no
-    sets the status of the ducks at location to "NO".
+  All meta-data is returned as a single JSON object. When no meta-data is
+  available on the targets at location the following JSON object is
+  returned: {"outside":"unknown"}
+  
 ```
   
 ## License  
@@ -38,7 +46,8 @@ so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included
 in all copies or substantial portions of the Software.
 
-The person(s) dealing in the Software care for their ducks responsibly.
+The person(s) dealing in the Software care or intent to care for their
+ducks responsibly.
 
 THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS
 OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,

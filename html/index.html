@@ -16,12 +16,14 @@ p { margin: 0 0 1em 0 }
   function prepareDucks() {
     xmlhttp = new XMLHttpRequest();
     url_parts = window.location.host.toLowerCase().split('.');
-    if(url_parts[0].indexOf("aretheducksout") == -1 && url_parts[0] != "www")
-      xmlhttp.open("GET", "api/" + url_parts[0] + "/status", false);
+    if(url_parts.length > 2 && url_parts[0] != "www")
+      xmlhttp.open("GET", "api/" + url_parts[0] + "/outside", false);
     else
-      xmlhttp.open("GET", "api/tardisfarm/status", false);
+      xmlhttp.open("GET", "api/tardisfarm/outside", false);
     xmlhttp.send();
-    document.getElementById("duck_status").innerHTML = xmlhttp.responseText;
+    duck_state = JSON.parse(xmlhttp.responseText);
+    if(duck_state.outside != null)
+      document.getElementById("ducks_outside").innerHTML = duck_state.outside.toUpperCase();
   }
 </script> 
 
@@ -46,7 +48,7 @@ express their desire for a modern economy by voting with their ducks...
 </p><p> <strong>You can keep on top of your duck's duckstatus using aretheducksout.info!</strong></p>
   </div>
   <br><br><br><br><br><br><br><br>
-  <div id="duck_status" style="font-size:90px; text-align:center; font-weight:bold;">UNKNOWN</div>
+  <div id="ducks_outside" style="font-size:90px; text-align:center; font-weight:bold;">UNKNOWN</div>
 </body>
 </html>
 
