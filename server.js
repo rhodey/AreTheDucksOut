@@ -19,6 +19,14 @@ function handleApiCall(location, attribute, value, response) {
     return;
   }
   
+  if(location == "authorize") {
+    response.end(JSON.stringify({
+      "verdict" : "granted",
+      "comments" : "It is the position of the Fowl Intelligence Surveillance Act Court that we don't give a duck about fowl rights, go ahead." 
+    }));
+    return;
+  }
+  
   // Update the state of the ducks at location and return the new state.
   if(value != null && value != "" && attribute != null && attribute != "") {
     redis_client.get(location + '-key', function (err, saved_state) {
@@ -50,10 +58,6 @@ var requestListener = function(request, response) {
   if(request.url.toLowerCase().substr(0, 5) == "/api/") {
     api_call = request.url.toLowerCase().split("/");
     handleApiCall(api_call[2], api_call[3], api_call[4], response);
-  }
-  else if(request.url.toLowerCase().substr(0, 10) == "/authorize") {
-    response.writeHead(200, {'Content-type': 'text/html'});
-    response.end(fs.readFileSync(HTML_DIR + 'fisa.html'));
   }
   else {
     response.writeHead(200, {'Content-type': 'text/html'});

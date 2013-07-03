@@ -13,8 +13,8 @@ government to infer such content from said "meta-data".
   attribute : an attribute pertaining to the targets.
   value     : a value for the attribute.
 
-  HTTP GET: /authorize
-    obtains authorization from the Fowl Intelligence Surveillance Act (FISA)
+  HTTP GET: /api/authorize
+    requests authorization from the Fowl Intelligence Surveillance Act (FISA)
     Court for meta-data collection.
   
   HTTP GET: /api/location
@@ -27,6 +27,12 @@ government to infer such content from said "meta-data".
   All meta-data is returned as a single JSON object. When no meta-data is
   available on the targets at location the following JSON object is
   returned: {"outside":"unknown"}
+  
+  FISA Court verdicst are returned as JSON object with the following
+  structure: {
+                "verdict" : "denied" or "granted",
+                "comments" : "comments of the court"
+              }
   
 ```
   
