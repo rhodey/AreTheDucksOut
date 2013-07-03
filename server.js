@@ -59,6 +59,10 @@ var requestListener = function(request, response) {
     api_call = request.url.toLowerCase().split("/");
     handleApiCall(api_call[2], api_call[3], api_call[4], response);
   }
+  else if(request.url == "/terrorist_duck.jpg") {
+    response.writeHead(200, {'Content-type': 'image/jpeg'});
+    response.end(fs.readFileSync(HTML_DIR + 'terrorist_duck.jpg'));
+  }
   else {
     response.writeHead(200, {'Content-type': 'text/html'});
     response.end(fs.readFileSync(HTML_DIR + 'index.html'));
