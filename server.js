@@ -55,7 +55,7 @@ function handleApiCall(location, attribute, value, response) {
 }
 
 var requestListener = function(request, response) {
-  if(request.url.toLowerCase().substr(0, 5) == "/api/") {
+  if(request.url.toLowerCase().substr(0, 4) == "/api") {
     api_call = request.url.toLowerCase().split("/");
     handleApiCall(api_call[2], api_call[3], api_call[4], response);
   }
