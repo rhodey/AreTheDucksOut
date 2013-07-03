@@ -44,7 +44,8 @@
       duck_location = url_parts[0];
     else if(path_parts.length > 1 && path_parts[1] !== "")
       duck_location = path_parts[1];
-    document.getElementById("duck_location").innerHTML= duck_location;
+    document.getElementById("duck_location").innerHTML=
+duck_location.charAt(0).toUpperCase() + duck_location.slice(1);
     
     xmlhttp.open("GET", "api/" + duck_location + "/outside", false);
     xmlhttp.send();
@@ -53,12 +54,17 @@
     if(duck_state.outside != null)
       document.getElementById("ducks_outside").innerHTML = duck_state.outside.toUpperCase();
   }
+
+   function capitaliseFirstLetter(string)
+{
+   return charAt(0).toUpperCase() + string.slice(1);
+}
 </script> 
 
 </head>
 <body onload="prepareDucks()">
   <div id="wrapper">
-    <h1>Are the <div id="duck_location"></div>Ducks Out?  We Need to know so we can organize our lives!!</h1>
+    <h1>Are the <span id="duck_location"></span> Ducks Out?  We Need to know so we can organize our lives!!</h1>
     <div id=left>
       <img src="./terrorist_duck.jpg" style="max-height: 250px; max-width: 350px;">
       <br><div style="font-size:38px">Are the ducks out?</div>
