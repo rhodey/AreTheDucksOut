@@ -44,6 +44,7 @@
       duck_location = url_parts[0];
     else if(path_parts.length > 1 && path_parts[1] !== "")
       duck_location = path_parts[1];
+    document.getElementById("duck_location").innerHTML= duck_location;
     
     xmlhttp.open("GET", "api/" + duck_location + "/outside", false);
     xmlhttp.send();
@@ -57,8 +58,7 @@
 </head>
 <body onload="prepareDucks()">
   <div id="wrapper">
-    <h1>Are the Ducks Out?  We Need to know so we can organize our lives!!</h1>
-    
+    <h1>Are the <div id="duck_location"></div>Ducks Out?  We Need to know so we can organize our lives!!</h1>
     <div id=left>
       <img src="./terrorist_duck.jpg" style="max-height: 250px; max-width: 350px;">
       <br><div style="font-size:38px">Are the ducks out?</div>
