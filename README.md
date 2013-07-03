@@ -6,6 +6,11 @@ is permitted to be "collected", the content of the target's lives outside
 or inside their cage is not "collected" nor is it the interest of this
 government to infer such content from said "meta-data".  
   
+  
+## Installation
+duckproxy goes into /etc/apache2/sites-enabled/duckproxy 
+page your web dev for help
+
 ## API
   
 ```javascript
