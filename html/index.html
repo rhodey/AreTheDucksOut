@@ -59,6 +59,14 @@ duck_location.charAt(0).toUpperCase() + duck_location.slice(1);
 {
    return charAt(0).toUpperCase() + string.slice(1);
 }
+
+  function setOutside(value) {
+    xmlhttp.open("GET", "api/" + duck_location + "/outside/" + value, false);
+    xmlhttp.send();
+    if(value)
+      document.getElementById("ducks_outside").innerHTML = value.toUpperCase();
+  }
+
 </script> 
 
 </head>
@@ -68,17 +76,19 @@ duck_location.charAt(0).toUpperCase() + duck_location.slice(1);
     <div id=left>
       <img src="./terrorist_duck.jpg" style="max-height: 250px; max-width: 350px;">
       <br><div style="font-size:38px">Are the ducks out?</div>
+      <button onClick="setOutside('YES')">Yes</button>
+      <button onClick="setOutside('NO')">No</button>
     </div>
     
     <div id=right>
       <h2>Why</h2>
       <p>In the endgame of the world, ducks and duck eggs and fresh turduckin will
       sustain many people</p>
-      
+
       <h2>What</h2>
       <p>To this end, we are providing an outlet by which these visionaries can
       express their desire for a modern economy by voting with their ducks...</p>
-      
+
       <p><strong>You can keep on top of your duck's duckstatus using aretheducksout.info!</strong></p>
   </div>
   <br><br><br><br><br><br><br><br>
